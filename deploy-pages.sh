@@ -23,7 +23,9 @@ git -C "$WT" rm -rq --ignore-unmatch .
 cp -r "$ROOT/frontend/dist/." "$WT/"
 git -C "$WT" add -A
 
-if git -C "$WT" diff --cached --quiet; then
+# Note: `git diff --cached --quiet` proved unreliable here (it missed a changed binary
+# file), so check the porcelain status output instead.
+if [ -z "$(git -C "$WT" status --porcelain)" ]; then
   echo "Nothing changed since the last deploy."
   exit 0
 fi
