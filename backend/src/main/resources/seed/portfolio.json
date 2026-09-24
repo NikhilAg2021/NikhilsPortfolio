@@ -152,21 +152,19 @@
       "liveUrl": ""
     },
     {
-      "name": "Team UAV Club Website",
-      "period": "2021",
-      "kind": "College club · VIT",
-      "description": "Official website for Team UAV, VIT's autonomous aerial vehicle team. Co-developed as part of the club's student dev team.",
+      "name": "Team UAV Website",
+      "period": "Mar 2022 – Jun 2022",
+      "kind": "Collaborative project · VIT",
+      "description": "Public website for Team UAV, VIT's UAV/drone design team: a multi-page site (Home, About, Fleet, Gallery, Credits) built with HTML, CSS and JavaScript.",
       "details": "",
       "highlights": [
-        "Co-developed a multi-section club site (Home, About, Fleet, Sponsors, Gallery, Credits) in vanilla HTML, CSS and JavaScript, hosted on GitHub Pages.",
-        "The Fleet section features an interactive 3D viewer of the team's UAVs, built with Three.js (GLTF models with orbit controls), alongside a photo gallery and a credits page for contributors."
+        "Collaborated with a fellow team member on the frontend development of Team UAV's public website (VIT's UAV/drone design team), a multi-page site (Home, About, Fleet, Gallery, Credits) built with HTML, CSS, and JavaScript.",
+        "Built responsive page layouts and UI components to showcase the team's aircraft fleet, projects, and members."
       ],
       "tags": [
-        "JavaScript",
         "HTML/CSS",
-        "Three.js",
-        "Chart.js",
-        "GitHub Pages"
+        "JavaScript",
+        "Responsive UI"
       ],
       "repoUrl": "https://github.com/teamuav/Website",
       "liveUrl": "https://teamuav.github.io/Website/#home"
