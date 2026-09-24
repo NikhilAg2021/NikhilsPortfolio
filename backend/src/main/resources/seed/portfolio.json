@@ -11,7 +11,7 @@
       "secure authentication flows.",
       "cloud-ready apps on Azure."
     ],
-    "summary": "Software Engineer with 2 years' experience across frontend development (React, JavaScript) and full-stack project delivery (Java, Spring Boot, MySQL). Currently working on an AI-assisted frontend modernization (vanilla JavaScript to React) for a customer-facing banking authentication platform, alongside application support and security remediation. Full-stack foundation built through independent project ownership and backend internship experience.",
+    "summary": "Software Engineer with 2 years' experience building customer-facing interfaces (React, JavaScript) and delivering full-stack projects (Java, Spring Boot, MySQL). Currently contributing to an AI-assisted migration of a banking authentication platform from vanilla JavaScript to React, alongside production support, security remediation, and Agile delivery within a large engineering team. Full-stack foundation built through independent project ownership and backend internship experience.",
     "email": "nikhilagarwal.20.na@gmail.com",
     "phone": "",
     "resumeUrl": "/resume.pdf",
@@ -54,11 +54,11 @@
       "end": "Present",
       "highlights": [
         "Work on frontend modernization across 4 core components within a 20-person engineering team; jointly delivered the first component's frontend with a senior engineer, now taking independent ownership of subsequent components.",
-        "Contributing to an AI-assisted migration of legacy vanilla JavaScript to React (Copilot-assisted development), converting existing UI logic into React components and connecting them to REST APIs, as part of a broader platform upgrade (Java 11→17, Spring Framework → Spring Boot, on-premise → Azure).",
+        "Contributing to an AI-assisted migration of legacy vanilla JavaScript to React (Copilot-assisted development), converting existing UI logic into React components and connecting them to REST APIs; the migration is in the analysis/integration phase, part of a broader platform upgrade (Java 11→17, Spring Framework → Spring Boot, on-premise → Azure).",
         "Identified and fixed a Content Security Policy misconfiguration exposing sensitive data; resolved 25+ vulnerable-dependency security tickets per company standards.",
-        "Investigate client-raised incidents (login failures, errors) via Splunk/TeraGrep log analysis, identify root cause, and communicate resolution via ServiceNow; also handle audit log extraction requests.",
+        "Investigate client-raised incidents (login failures, UI/application errors) via Splunk/TeraGrep log analysis, identify root cause, and communicate resolution via ServiceNow; also handle audit log extraction requests.",
         "Manage CI/CD deployment to the test environment via Jenkins, including pipeline triggering, monitoring, and post-deployment validation.",
-        "Participate in Agile delivery: sprint planning, daily standups, and biweekly client stakeholder calls."
+        "Participate in Agile delivery: sprint planning, daily standups, and biweekly client stakeholder calls; work directly with the client on ticket updates and blockers."
       ],
       "tags": [
         "React",
@@ -76,8 +76,9 @@
       "start": "May 2022",
       "end": "Jul 2022",
       "highlights": [
-        "Designed and developed a full-stack GIS web application integrating OpenStreetMap with a Network Management System (Zabbix), visualizing 1000+ infrastructure nodes with real-time availability, using PHP/MySQL authentication and role-based access control.",
-        "Implemented zoom-level marker clustering (Leaflet.js), reducing map load time by ~45% for dense datasets, and RESTful API-based data access via Axios, improving API response latency by ~30%."
+        "Designed and developed a full-stack GIS web application integrating OpenStreetMap with a Network Management System (Zabbix), visualizing 1000+ infrastructure nodes with real-time availability.",
+        "Implemented zoom-level marker clustering (Leaflet.js), reducing map load time by ~45% for dense datasets, and RESTful API-based data access via Axios, improving API response latency by ~30%.",
+        "Supported session management and role-based access control (PHP/MySQL) underlying the application's auth flows."
       ],
       "tags": [
         "Leaflet.js",
@@ -117,8 +118,8 @@
       "description": "A stock analytics platform that turns ML price predictions into dashboards and plain-language insights.",
       "details": "",
       "highlights": [
-        "Owned end-to-end development: authentication, dashboards, and responsive UI, integrating backend ML predictions (LSTM, GRU, GAN, WGAN-GP) via REST APIs.",
-        "Built interactive data visualizations and an AI-powered chatbot that translates financial indicators and model outputs into user-facing insights."
+        "Owned end-to-end development: authentication, multi-page navigation, dashboards, and responsive UI (HTML, CSS, JavaScript).",
+        "Integrated backend ML predictions (LSTM, GRU, GAN, WGAN-GP) via REST APIs and built interactive visualizations plus an AI-powered chatbot that translates financial indicators and model outputs into user-facing insights."
       ],
       "tags": [
         "JavaScript",
