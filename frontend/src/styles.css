@@ -495,3 +495,5 @@ html:has(.modal[open]) { overflow: hidden; }
   .modal-body { padding: 1.25rem 1.1rem 1.5rem; }
   @keyframes sheet-in { from { transform: translateY(100%); } to { transform: none; } }
 }
+
+.social { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.25rem; }

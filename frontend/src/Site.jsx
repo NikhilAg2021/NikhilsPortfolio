@@ -257,6 +257,13 @@ export default function Site() {
               <p className="lead">Have a role, a project, or just want to talk shop? Send a message and I'll get back to you.</p>
               <CopyLine value={profile.email} href={`mailto:${profile.email}`} />
               {profile.phone && <CopyLine value={profile.phone} href={`tel:${profile.phone.replace(/\s/g, '')}`} />}
+              {visibleLinks.length > 0 && (
+                <div className="social">
+                  {visibleLinks.map((l) => (
+                    <a key={l.label} className="btn small" href={l.url} target="_blank" rel="noopener noreferrer">{l.label} ↗</a>
+                  ))}
+                </div>
+              )}
             </div>
             <ContactForm to={profile.email} />
           </div>
