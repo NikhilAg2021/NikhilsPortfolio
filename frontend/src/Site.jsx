@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
-import { api } from './api.js'
+import { api, assetUrl, STATIC_SITE } from './api.js'
 import ThemeToggle from './ThemeToggle.jsx'
 import ProjectModal, { slugify } from './ProjectModal.jsx'
 import { CountUp, useActiveSection, useReveal, useScroll, useSpotlight, useTypewriter } from './interactions.jsx'
@@ -132,7 +132,7 @@ export default function Site() {
           <Typed profile={profile} />
           <div className="hero-actions rise" style={{ '--d': 4 }}>
             <a className="btn primary" href="#contact">Get in touch <span className="arrow">→</span></a>
-            {profile.resumeUrl && <a className="btn" href={profile.resumeUrl} target="_blank" rel="noreferrer">Download résumé</a>}
+            {profile.resumeUrl && <a className="btn" href={assetUrl(profile.resumeUrl)} target="_blank" rel="noreferrer">Download résumé</a>}
             {visibleLinks.map((l) => (
               <a key={l.label} className="btn ghost" href={l.url} target="_blank" rel="noreferrer">{l.label} ↗</a>
             ))}
@@ -258,7 +258,7 @@ export default function Site() {
               <CopyLine value={profile.email} href={`mailto:${profile.email}`} />
               {profile.phone && <CopyLine value={profile.phone} href={`tel:${profile.phone.replace(/\s/g, '')}`} />}
             </div>
-            <ContactForm />
+            <ContactForm to={profile.email} />
           </div>
         </Section>
       </main>
@@ -379,7 +379,10 @@ function initials(name = '') {
   return name.split(/\s+/).filter(Boolean).map((w) => w[0]).join('').slice(0, 3).toUpperCase()
 }
 
-function ContactForm() {
+// mailto: links get unreliable past ~2000 characters, so the static build caps the message lower.
+const MAX_MESSAGE = STATIC_SITE ? 1500 : 5000
+
+function ContactForm({ to }) {
   const empty = { name: '', email: '', message: '', website: '' }
   const [form, setForm] = useState(empty)
   const [status, setStatus] = useState({ state: 'idle' })
@@ -388,6 +391,14 @@ function ContactForm() {
 
   async function submit(e) {
     e.preventDefault()
+    if (STATIC_SITE) {
+      // No backend on GitHub Pages: hand the message to the visitor's email app instead.
+      const subject = `Portfolio enquiry from ${form.name}`
+      const body = `${form.message}\n\n— ${form.name} (${form.email})`
+      window.location.href = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+      setStatus({ state: 'mailto' })
+      return
+    }
     setStatus({ state: 'sending' })
     try {
       await api.sendMessage(form)
@@ -404,14 +415,17 @@ function ContactForm() {
       <label>Email<input required type="email" maxLength={200} value={form.email} onChange={update('email')} /></label>
       <label>
         Message
-        <textarea required rows={5} maxLength={5000} value={form.message} onChange={update('message')} />
-        <span className="counter muted">{form.message.length}/5000</span>
+        <textarea required rows={5} maxLength={MAX_MESSAGE} value={form.message} onChange={update('message')} />
+        <span className="counter muted">{form.message.length}/{MAX_MESSAGE}</span>
       </label>
       <input className="hp" tabIndex={-1} autoComplete="off" aria-hidden="true" value={form.website} onChange={update('website')} />
       <button className={`btn primary ${status.state === 'sent' ? 'sent' : ''}`} disabled={status.state === 'sending'}>
-        {status.state === 'sending' ? 'Sending…' : status.state === 'sent' ? 'Sent ✓' : 'Send message'}
+        {status.state === 'sending' ? 'Sending…' : status.state === 'sent' ? 'Sent ✓' : STATIC_SITE ? 'Send via email' : 'Send message'}
       </button>
       {status.state === 'sent' && <p className="ok">Thanks! Your message has been received.</p>}
+      {status.state === 'mailto' && (
+        <p className="ok">Your email app should open with the message ready to send. If it didn't, write to <a href={`mailto:${to}`}>{to}</a>.</p>
+      )}
       {status.state === 'error' && <p className="err">{status.message}</p>}
     </form>
   )

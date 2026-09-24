@@ -19,8 +19,21 @@ async function request(path, { token, ...options } = {}) {
   return res.status === 204 || res.status === 202 ? null : res.json()
 }
 
+/** True in the GitHub Pages build (`npm run build:pages`), where there is no backend. */
+// eslint-disable-next-line no-undef
+export const STATIC_SITE = __STATIC_SITE__
+
+/** Resolves site-relative paths like "/resume.pdf" against the deploy base (e.g. /NikhilsPortfolio/). */
+export function assetUrl(url) {
+  if (typeof url !== 'string' || !url.startsWith('/') || url.startsWith('//')) return url
+  return import.meta.env.BASE_URL + url.slice(1)
+}
+
 export const api = {
-  getPortfolio: () => request('/api/portfolio'),
+  getPortfolio: () =>
+    STATIC_SITE
+      ? import('../../backend/src/main/resources/seed/portfolio.json').then((m) => m.default)
+      : request('/api/portfolio'),
   sendMessage: (msg) => request('/api/contact', { method: 'POST', body: JSON.stringify(msg) }),
 
   login: (token) => request('/api/admin/login', { method: 'POST', token }),

@@ -72,9 +72,26 @@ $env:PORTFOLIO_ADMIN_TOKEN = "..."; java -jar target\portfolio-1.0.0.jar
 
 Then the whole site, including `/admin`, is served from http://localhost:8080.
 
-## Deploy
+## Deploy to GitHub Pages (static, current live site)
 
-The site needs a Java host with a **persistent disk**, because edits are saved to a file. Good options:
+Live at **https://nikhilag2021.github.io/NikhilsPortfolio/**. GitHub Pages can't run Java, so this is a
+static build of the same React app (`npm run build:pages`):
+
+- Content is bundled from `backend/src/main/resources/seed/portfolio.json`, so **edit that file** and redeploy
+- The contact form opens the visitor's email app with the message pre-filled, since there's no server to receive it
+- `/admin` is not available (it needs the backend)
+
+To publish changes, commit them, then run from Git Bash:
+
+```bash
+./deploy-pages.sh
+```
+
+It builds `frontend/dist` and pushes it to the `gh-pages` branch. Pages updates within a minute or two.
+
+## Deploy the full version (with admin editor + contact inbox)
+
+The full site needs a Java host with a **persistent disk**, because edits are saved to a file. Good options:
 
 - **Railway** / **Render** / **Fly.io**: deploy with the included `Dockerfile`, attach a volume at `/data`, and set the env var `PORTFOLIO_ADMIN_TOKEN`.
 - **Azure App Service (Java 21)**: fits your AZ-104. Upload the jar, set `PORTFOLIO_ADMIN_TOKEN`, and set `PORTFOLIO_DATA_DIR=/home/data` (the `/home` directory is persistent).
